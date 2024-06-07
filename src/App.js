@@ -3,86 +3,30 @@
 import * as React from 'react';
 import { View, Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import HomeScreen from "./views/HomeScreen";
-
-function SobreScreen(props) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-    <Button
-        title='Ir para Home'
-        onPress={() => props.navigation.navigate('Sobre')}/>
-
-    <Button
-        title='Ir para Produtos'
-        onPress={() => props.navigation.navigate('Produtos')}/>
-
-    <Button
-        title='Ir para Contato'
-        onPress={() => props.navigation.navigate('Contato')}/>
-
-    </View>
-    );
-  }
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
-  function ProdutosScreen(props) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Produtos Screen</Text>
-        <Button
-        title='Ir para Home'
-        onPress={() => props.navigation.navigate('Home')}/>
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-        <Button
-        title='Ir para Sobre'
-        onPress={() => props.navigation.navigate('Sobre')}/>
+import HomeScreen from './views/HomeScreen';
+import SobreScreen from './views/SobreScreen';
+import ProdutosScreen from './views/ProdutosScreen';
+import ContatoScreen from './views/ContatoScreen';
 
-        <Button
-        title='Ir para Contato'
-        onPress={() => props.navigation.navigate('Contato')}/>
-
-      </View>
-    );
-  }
-
-  function ContatoScreen(props) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Contato Screen</Text>
-    <Button
-        title='Ir para Home'
-        onPress={() => props.navigation.navigate('Sobre')}/>
-
-    
-    <Button
-        title='Ir para Sobre'
-        onPress={() => props.navigation.navigate('Sobre')}/>
-
-    <Button
-        title='Ir para Produtos'
-        onPress={() => props.navigation.navigate('Produtos')}/>
-
-      </View>
-    );
-  }
-
-
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Sobre" component={SobreScreen} />
-        <Stack.Screen name="Produtos" component={ProdutosScreen} />
-        <Stack.Screen name="Contato" component={ContatoScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator initialRouteName='Home'>
+        <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: ({color, size }) => (<MaterialCommunityIcons name='home' color={color} size={size} />),}}/>
+        
+        <Tab.Screen name="Sobre" component={SobreScreen} options={{tabBarIcon: ({color, size }) => (<MaterialCommunityIcons name='account-search' color={color} size={size} />),}}/>
+        <Tab.Screen name="Produtos" component={ProdutosScreen} options={{tabBarIcon: ({color, size }) => (<MaterialCommunityIcons name='cart-heart' color={color} size={size} />),}}/>
+        <Tab.Screen name="Contato" component={ContatoScreen} options={{tabBarIcon: ({color, size }) => (<MaterialCommunityIcons name='account' color={color} size={size} />),}}/>
+      </Tab.Navigator>
     </NavigationContainer>
   );
-}
+        }
 
 export default App;
