@@ -5,24 +5,7 @@ import { View, Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function HomeScreen(props) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title='Ir para Sobre'
-        onPress={() => props.navigation.navigate('Sobre')}/>
-
-    <Button
-        title='Ir para Produtos'
-        onPress={() => props.navigation.navigate('Produtos')}/>
-
-    <Button
-        title='Ir para Contato'
-        onPress={() => props.navigation.navigate('Contato')}/>
-    </View>
-  );
-}
+import HomeScreen from "./views/HomeScreen";
 
 function SobreScreen(props) {
     return (
